@@ -10,14 +10,16 @@ import Firebase
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var numberOfCustomer: UILabel!
     @IBOutlet weak var dbLabel: UILabel!
     var db =  Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDBLabel()
-        setDBData()
-        saveCustomer()
+//        setDBData()
+//        saveCustomer()
+        fetchDate()
         // Do any additional setup after loading the view.
     }
     
@@ -28,6 +30,35 @@ class ViewController: UIViewController {
                 self.dbLabel.text = value
             }
         }
+    }
+}
+
+extension ViewController {
+    func fetchDate(){
+      
+        
+        let data =  db.child("customer").observeSingleEvent(of: .value) { snapshot in
+          //  print("----> \(snapshot.value)")
+            
+            do{
+                //  NSArray나 NSDictionary형식을 data 타입으로 바꿔줌
+                let decoder =  JSONDecoder()
+                let data =  try JSONSerialization.data(withJSONObject: snapshot.value, options: [])
+                let customer:[Customer] =  try decoder.decode([Customer].self, from: data )
+                print("\(customer.count)")
+                
+                //네트워크 컴플리션에서 ui작업할때는 DispatchQueue.main.async {} 을 사용하자 (습관처럼)
+                DispatchQueue.main.async {
+                    self.numberOfCustomer.text = "\(customer.count) of Customer"
+                    
+                }
+            }catch let error{
+                print("error message : \(error.localizedDescription)")
+            }
+            
+        }
+        
+        
     }
 }
 
@@ -59,7 +90,7 @@ extension ViewController{
     }
 }
 
-struct Customer{
+struct Customer:Codable {
     let id : Int
     let name : String
     let books : [Book]
@@ -73,7 +104,7 @@ struct Customer{
     
 }
 
-struct Book{
+struct Book :Codable{
     let title: String
     let author : String
     

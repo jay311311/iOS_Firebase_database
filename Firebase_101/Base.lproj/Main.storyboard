@@ -17,8 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FirstLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pam-5v-kOq">
-                                <rect key="frame" x="170" y="108" width="75" height="21"/>
+                                <rect key="frame" x="169.5" y="108" width="75" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Customer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWU-GR-vzl">
+                                <rect key="frame" x="130" y="174" width="154" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -27,11 +33,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Pam-5v-kOq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="R3I-fL-4tt"/>
+                            <constraint firstItem="bWU-GR-vzl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="130" id="gLg-qr-zpj"/>
+                            <constraint firstItem="bWU-GR-vzl" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wid-4H-LbK"/>
                             <constraint firstItem="Pam-5v-kOq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="wub-wb-2uy"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dbLabel" destination="Pam-5v-kOq" id="377-mR-Sos"/>
+                        <outlet property="numberOfCustomer" destination="bWU-GR-vzl" id="OOu-4d-PO1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
